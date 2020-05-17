@@ -1,0 +1,63 @@
+WARNING:root:'maxDiffOHLC':2020-05-17 01:51:42
+WARNING:root:'maxRawOHLC':2020-05-17 01:52:17
+WARNING:root:can't pickle _thread.lock objects:2020-05-17 02:07:26
+WARNING:root:can't pickle _thread.lock objects:2020-05-17 02:08:10
+WARNING:root:can't pickle _thread.lock objects:2020-05-17 02:08:51
+WARNING:root:can't pickle _thread.lock objects:2020-05-17 02:09:00
+WARNING:root:'NoneType' object has no attribute 'transpose':2020-05-17 02:10:31
+WARNING:root:can't pickle _thread.lock objects:2020-05-17 02:10:40
+WARNING:root:can't pickle _thread.lock objects:2020-05-17 02:10:59
+WARNING:root:'NoneType' object has no attribute 'transpose':2020-05-17 02:11:06
+WARNING:root:can't pickle _thread.lock objects:2020-05-17 02:11:31
+WARNING:root:can't pickle _thread.lock objects:2020-05-17 02:13:57
+WARNING:root:can't pickle _thread.lock objects:2020-05-17 02:14:11
+WARNING:root:can't pickle _thread.lock objects:2020-05-17 02:15:23
+WARNING:root:can't pickle _thread.lock objects:2020-05-17 02:16:10
+WARNING:root:can't pickle _thread.lock objects:2020-05-17 02:17:25
+WARNING:root:can't pickle _thread.lock objects:2020-05-17 02:17:50
+WARNING:root:can't pickle _thread.lock objects:2020-05-17 02:17:56
+WARNING:root:can't pickle _thread.lock objects:2020-05-17 02:19:28
+WARNING:root:generateClient() takes 1 positional argument but 3 were given:2020-05-17 02:28:51
+WARNING:root:can't pickle _thread.lock objects:2020-05-17 02:29:09
+WARNING:root:can't pickle _thread.lock objects:2020-05-17 02:30:06
+WARNING:root:'influxdbClient' object has no attribute 'query_api':2020-05-17 02:31:29
+WARNING:root:'influxdbClient' object has no attribute 'generate_client':2020-05-17 02:33:17
+WARNING:root:'influxdbClient' object has no attribute 'query_api':2020-05-17 02:33:40
+WARNING:root:'NoneType' object has no attribute 'transpose':2020-05-17 02:34:49
+WARNING:root:'NoneType' object has no attribute 'transpose':2020-05-17 02:35:22
+WARNING:root:'NoneType' object has no attribute 'transpose':2020-05-17 02:35:49
+WARNING:root:'NoneType' object has no attribute 'transpose':2020-05-17 02:36:54
+WARNING:root:'float' object cannot be interpreted as an integer:2020-05-17 02:42:48
+WARNING:root:The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().:2020-05-17 02:44:33
+WARNING:root:The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().:2020-05-17 02:47:31
+WARNING:root:No axis named log for object type <class 'pandas.core.series.Series'>:2020-05-17 02:48:41
+WARNING:root:The truth value of an array with more than one element is ambiguous. Use a.any() or a.all():2020-05-17 02:49:41
+WARNING:root:'str' object cannot be interpreted as an integer:2020-05-17 02:50:17
+WARNING:root:'Series' objects are mutable, thus they cannot be hashed:2020-05-17 02:55:29
+WARNING:root:'volumelog':2020-05-17 02:56:05
+WARNING:root:'volumelog':2020-05-17 02:56:24
+WARNING:root:'Series' objects are mutable, thus they cannot be hashed:2020-05-17 02:56:40
+WARNING:root:'Series' objects are mutable, thus they cannot be hashed:2020-05-17 02:56:51
+WARNING:root:'Series' objects are mutable, thus they cannot be hashed:2020-05-17 02:57:10
+WARNING:root:'volumelog':2020-05-17 02:57:26
+WARNING:root:'volumelog':2020-05-17 02:57:34
+WARNING:root:'volumelog':2020-05-17 02:57:39
+WARNING:root:'volumelog':2020-05-17 02:58:19
+WARNING:root:'DataPreprocessor' object has no attribute 'generate_scalers':2020-05-17 03:17:06
+WARNING:root:'DataPreprocessor' object has no attribute 'generate_scalers':2020-05-17 03:22:42
+WARNING:root:'rawopen':2020-05-17 03:29:44
+WARNING:root:'diffclose':2020-05-17 03:29:53
+WARNING:root:'diffclose':2020-05-17 03:30:11
+WARNING:root:'rawopen':2020-05-17 03:30:33
+WARNING:root:'diffclose':2020-05-17 03:31:39
+WARNING:root:'dict_values' object has no attribute 'shape':2020-05-17 03:37:37
+WARNING:root:only integers, slices (`:`), ellipsis (`...`), numpy.newaxis (`None`) and integer or boolean arrays are valid indices:2020-05-17 03:46:37
+WARNING:root:all the input array dimensions for the concatenation axis must match exactly, but along dimension 1, the array at index 0 has size 7191 and the array at index 1 has size 7192:2020-05-17 03:47:01
+WARNING:root:The truth value of an array with more than one element is ambiguous. Use a.any() or a.all():2020-05-17 03:49:28
+WARNING:root:The truth value of an array with more than one element is ambiguous. Use a.any() or a.all():2020-05-17 03:50:53
+WARNING:root:The truth value of an array with more than one element is ambiguous. Use a.any() or a.all():2020-05-17 03:51:24
+WARNING:root:The truth value of an array with more than one element is ambiguous. Use a.any() or a.all():2020-05-17 03:51:33
+WARNING:root:The truth value of an array with more than one element is ambiguous. Use a.any() or a.all():2020-05-17 03:51:55
+WARNING:root:'influxdbClient' object has no attribute 'query_api':2020-05-17 14:00:34
+INFO:root:Correctly sync at: 2020-05-17T12:00:00+00:00
+INFO:root:Correctly sync at: 2020-05-17T12:01:00+00:00

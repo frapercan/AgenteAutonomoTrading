@@ -5,6 +5,8 @@ import ntplib  # Network Time protocol
 from influxdb_client import Point
 import time
 import logging
+import numpy as np
+import math
 
 logging.basicConfig(filename='log', level=logging.DEBUG)
 
@@ -27,7 +29,7 @@ class DataSync:
         last_ts_query = 'from(bucket: "{}") |> range(start: -9999d) |> last()'.format(self.pair)
         last_ts = self.client.query_api().query_data_frame(last_ts_query)
         if '_time' not in last_ts.columns:
-            pivot_stamp = 1067681680000 #2003 - More than enough
+            pivot_stamp = 1067681680000  # 2003 - More than enough
         else:
             pivot_stamp = last_ts._time[0].timestamp() * 1000
         while 1:
@@ -61,19 +63,38 @@ class DataSync:
                 self.client.write_api().write(record=self.serialize_points(response), bucket=self.pair)
 
     def serialize_points(self, response):
+        lag_response = True
         points = []
         for tick in list(response):
-            timestamp = pendulum.from_timestamp(int(tick[0]) // 1000)
-            timestamp = timestamp.in_tz('UTC')
-            timestamp = timestamp.to_atom_string()
-            open_price = float(tick[1])
-            low_price = float(tick[2])
-            high_price = float(tick[3])
-            close_price = float(tick[4])
-            volume = float(tick[5])
-            point = Point(self.pair).field('close', close_price).field('open', open_price).field('high', high_price) \
-                .field('low', low_price).field('volume', volume).time(timestamp)
-            points.append(point)
+            if lag_response:
+                open_price = float(tick[1])
+                low_price = float(tick[2])
+                high_price = float(tick[3])
+                close_price = float(tick[4])
+                volume = float(tick[5])
+                lag_response = False
+            else:
+                open_return = np.log(tick[1] / open_price)
+                low_return = np.log(tick[2] / low_price)
+                high_return = np.log(tick[3] / high_price)
+                close_return = np.log(tick[4] / close_price)
+                volume_return = np.log(tick[5] / volume)
+                open_price = float(tick[1])
+                low_price = float(tick[2])
+                high_price = float(tick[3])
+                close_price = float(tick[4])
+                volume = float(tick[5])
+                timestamp = pendulum.from_timestamp(int(tick[0]) // 1000).in_tz('UTC').to_atom_string()
+                point = Point(self.pair).field('close', close_price).field('open', open_price).field('high', high_price) \
+                    .field('low', low_price)\
+                    .field('volume', volume)\
+                    .time(timestamp)\
+                    .field('open_return', open_return)\
+                    .field('low_return', low_return)\
+                    .field('high_return', high_return)\
+                    .field('close_return', close_return)\
+                    .field('volume_return', volume_return)
+                points.append(point)
         # Return True is operation is successful
         return points
 

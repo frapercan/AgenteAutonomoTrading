@@ -61,3 +61,24 @@ WARNING:root:The truth value of an array with more than one element is ambiguous
 WARNING:root:'influxdbClient' object has no attribute 'query_api':2020-05-17 14:00:34
 INFO:root:Correctly sync at: 2020-05-17T12:00:00+00:00
 INFO:root:Correctly sync at: 2020-05-17T12:01:00+00:00
+WARNING:root:(401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Wed, 20 May 2020 00:03:31 GMT', 'Content-Length': '55'})
+HTTP response body: b'{"code":"unauthorized","message":"unauthorized access"}'
+:2020-05-20 02:03:31
+WARNING:urllib3.connectionpool:Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd6aebb4100>: Failed to establish a new connection: [Errno 111] Connection refused')': /api/v2/query?org=US
+WARNING:urllib3.connectionpool:Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd6aebb4250>: Failed to establish a new connection: [Errno 111] Connection refused')': /api/v2/query?org=US
+WARNING:urllib3.connectionpool:Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd6aebb43a0>: Failed to establish a new connection: [Errno 111] Connection refused')': /api/v2/query?org=US
+WARNING:root:HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /api/v2/query?org=US (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd6aebb44f0>: Failed to establish a new connection: [Errno 111] Connection refused')):2020-05-20 20:21:50
+WARNING:root:float division by zero:2020-05-20 20:23:35
+WARNING:root:float division by zero:2020-05-20 20:24:04
+WARNING:root:local variable 'low_return' referenced before assignment:2020-05-20 21:06:15
+WARNING:root:math domain error:2020-05-20 21:17:13
+INFO:root:Correctly sync at: 2020-05-20T19:47:00+00:00
+INFO:root:Correctly sync at: 2020-05-20T19:48:00+00:00
+INFO:root:Correctly sync at: 2020-05-20T19:49:00+00:00
+INFO:root:Correctly sync at: 2020-05-20T19:50:00+00:00
+INFO:root:Correctly sync at: 2020-05-20T19:52:00+00:00
+INFO:root:Correctly sync at: 2020-05-20T19:53:00+00:00
+INFO:root:Correctly sync at: 2020-05-20T19:54:00+00:00
+INFO:root:Correctly sync at: 2020-05-20T19:55:00+00:00

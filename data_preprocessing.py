@@ -124,24 +124,9 @@ class DataPreprocessor:
             from(bucket: "{pair}") \
           |> range(start: -30d, stop: -{test_set}d)\
           |> filter(fn: (r) => r._measurement == "{pair}") \
-          |> filter(fn: (r) => r._field == "close" or r._field == "high" or r._field == "low" or r._field == "open") \
+          |> filter(fn: (r) => r._field == "close_return" or r._field == "high_return" or r._field == "low_return"' \
+            ' or r._field == "open_return" or r._field == "volume_return) \
           |> max() \
-          |> yield(name: "raw") \
-           \
-          from(bucket: "{pair}") \
-          |> range(start: -30d, stop: -{test_set}d)\
-          |> filter(fn: (r) => r._measurement == "{pair}") \
-          |> filter(fn: (r) => r._field == "close" or r._field == "high" or r._field == "low" or r._field == "open") \
-          |> derivative(unit: {data_scale}, nonNegative: false, columns: ["_value"], timeColumn: "_time") \
-          |> max() \
-          |> yield(name: "diff")  \
-          from(bucket: "{pair}") \
-          |> range(start: -30d, stop: -{test_set}d)\
-          |> filter(fn: (r) => r._measurement == "{pair}") \
-          |> filter(fn: (r) => r._field == "volume") \
-          |> map(fn: (r) => ({{ r with _value:  math.log1p(x: r._value) }})) \
-          |> max() \
-          |> yield(name: "log") \
                     '.format(pair=self.pair, test_set=self.test_set, data_scale=self.data_scale)
         for table in client.query_api().query_data_frame(query_max):
             for result, value, field in zip(table.result, table._value, table._field):

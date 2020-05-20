@@ -12,7 +12,7 @@ params = {
     ## Config Params
     "url": "http://localhost:9999",
     "org": "US",
-    "token": "zDxSwoznrqSipuTs2VJfrOJl-e2twnCKsraGd-K_4YKUY0c_EB9fb341_kCi0lQqz9dUx_yWYGKUqiZaI2cGOA==",
+    "token": "DGgBPTM4HxiaHQMGPOcrEuKvnNp3sq-E1EaJ3gWwPml2HOTk29a0q6t4gy2RBANjtaHuec5Pm953yoXrI3Fs6Q==",
     "http_api_url": 'https://api-pub.bitfinex.com/v2/',
     "pair": 'tBTCUSD',
     "data_scale": '1m',

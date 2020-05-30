@@ -4,8 +4,9 @@ import pandas as pd
 import numpy as np
 from multiprocessing import Pool
 from sklearn.preprocessing import MinMaxScaler
-import matplotlib.pyplot as plt
 import os
+import matplotlib.pyplot as plt
+
 
 
 
@@ -13,12 +14,16 @@ def dataset_sliding_window_supervised(dataset, horizon, forecast, output):
     num_features = dataset.shape[1]
     num_samples = dataset.shape[0] - horizon - forecast
     X = np.zeros((num_samples, horizon, dataset.shape[1]))
-    Y = np.zeros((num_samples, forecast))
+    Y = np.zeros((num_samples))
     for i in range(num_samples):
         subset = np.array(dataset[i:i + horizon, :num_features])
         X[i, :, :] = subset
-        subset = np.array(dataset[i + horizon:i + horizon + forecast, output])
-        Y[i, :] = subset
+        log_change = np.sum(np.array(dataset[i + horizon:i + horizon + forecast, output]))
+        if log_change < 0:
+            Y[i] = -1
+        else:
+            Y[i] = 1
+
     return X, Y
 
 
@@ -53,21 +58,22 @@ class ETS:
           |> yield(name: "raw") \
                 '.format(pair=self.pair, start=start, stop=stop, data_scale=self.data_scale)
         data_response = client.query_api().query_data_frame(query)
-        start = data_response[0]._time.values[0]
-        stop = data_response[0]._time.values[-1]
         values = np.array([ table._value for table in data_response])
-
         columns = [ table._field[0] for table in data_response]
-
         scale = MinMaxScaler((-1,1))
         feature_range = np.vstack(([ self.features_range['max'+column] for column in columns],[ -self.features_range['max'+column] for column in columns]))
         scale.fit(feature_range)
         values = scale.transform(values.transpose())
+
+        volume_feature = columns.index("volume_return")
+        values[:,volume_feature] = values[:,volume_feature]/10
+        plt.plot(values)
         output_feature = columns.index(self.output_feature)
-
         X,Y = dataset_sliding_window_supervised(values,self.horizon,self.forecast,output_feature)
+        plt.show()
+        print("entra")
         np.savez_compressed(os.path.join("./training_data/")+str(iteration), X=X, Y=Y)
-
+        print("guardado")
 
 
     def generate_validation_set(self):
@@ -91,9 +97,12 @@ class ETS:
         scale.fit(feature_range)
         values = scale.transform(values.transpose())
         output_feature = columns.index(self.output_feature)
-
+        volume_feature = columns.index("volume_return")
+        values[:,volume_feature] = values[:,volume_feature]/10
+        plt.plot(values)
+        plt.show()
         X,Y = dataset_sliding_window_supervised(values,self.horizon,self.forecast,output_feature)
-        np.savez_compressed(os.path.join("./validation_data/")+"valset5d", X=X, Y=Y)
+        np.savez_compressed(os.path.join("./validation_data/")+"valset", X=X, Y=Y)
 
 
 
@@ -103,7 +112,7 @@ class ETS:
         for chunk_number in range(int(self.chunks_number / self.num_cores + 1)):
             p = Pool(self.num_cores)
             p.map(self.generate_features_from_iter, [i for i in range(chunk_number * self.num_cores,
-                                                                      chunk_number * self.num_cores + self.num_cores)])
+                                                                      chunk_number * self.num_cores + self.num_cores) if self.chunks_number>i ])
 
     def get_minimum_values(self):
         print('Obteniendo los valores inferiores del conjunto de entrenamiento.')
